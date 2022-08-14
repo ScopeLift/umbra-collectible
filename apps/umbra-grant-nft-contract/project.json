@@ -1,0 +1,45 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/umbra-grant-nft-contract/src",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "forge build --root apps/umbra-grant-nft-contract"
+      }
+    },
+    "install": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "forge install --root apps/umbra-grant-nft-contract {args.package} --no-git"
+      }
+    },
+    "deployLocal": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "forge create --rpc-url http://127.0.0.1:8545/ -i src/CollectibleContract.sol:Contract",
+        "cwd": "./apps/umbra-grant-nft-contract"
+      }
+    },
+    "test": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "forge test --root apps/umbra-grant-nft-contract"
+      }
+    },
+    "trace": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "forge test -vvvv --root apps/umbra-grant-nft-contract"
+      }
+    },
+    "clean": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "forge clean --root apps/umbra-grant-nft-contract"
+      }
+    }
+  },
+  "tags": []
+}
