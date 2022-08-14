@@ -18,7 +18,7 @@
     "deployLocal": {
       "executor": "@nrwl/workspace:run-commands",
       "options": {
-        "command": "forge create --rpc-url http://127.0.0.1:8545/ -i src/CollectibleContract.sol:Contract",
+        "command": "forge create --rpc-url http://127.0.0.1:8545/ -i src/UmbraGrantNFT.sol:UmbraGrantNFT --constructor-args 'Umbra OG Supporter' 'UMBRAOG' 1692052154",
         "cwd": "./apps/umbra-grant-nft-contract"
       }
     },
