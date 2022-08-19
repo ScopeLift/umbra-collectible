@@ -6,5 +6,5 @@ endif
 
 build :; forge build
 clean :; forge clean
-test-contract :; forge test --match-path test/Contract.t.sol
+test-contract :; forge test --match-path test/UmbraOGSupporter.t.sol
 install :; $(INSTALL_CMD)
