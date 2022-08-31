@@ -3,10 +3,10 @@ name: CI
 on:
   pull_request:
     branches:
-      - 'master'
+      - "master"
   push:
     branches:
-      - 'master'
+      - "master"
 
 env:
   BASE: ${{ github.ref == 'refs/heads/master' && 'origin/master~1' || 'origin/master' }}
@@ -27,7 +27,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16.x
-          cache: 'yarn'
+          cache: "yarn"
       - run: yarn install
       - run: npx nx affected:lint --base $BASE
       - name: Test
