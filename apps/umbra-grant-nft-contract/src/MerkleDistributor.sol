@@ -3,7 +3,7 @@ pragma solidity ^0.8.13;
 
 import "@openzeppelin/contracts/utils/cryptography/MerkleProof.sol";
 import "./interfaces/IMerkleDistributor.sol";
-import "./interfaces/IUmbraGrantNFT.sol";
+import "./interfaces/IMintableNFT.sol";
 
 contract MerkleDistributor is IMerkleDistributor {
   address public immutable override collectible;
@@ -49,7 +49,7 @@ contract MerkleDistributor is IMerkleDistributor {
 
     // Mark it claimed and send the collectible.
     _setClaimed(index);
-    IUmbraCollectible(collectible).mint(account, index);
+    IMintableNFT(collectible).mint(account, index);
 
     emit Claimed(index, account);
   }

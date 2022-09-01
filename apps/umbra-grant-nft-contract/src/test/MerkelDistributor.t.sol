@@ -11,7 +11,8 @@ contract MerkeleDistributorMissingTree is UmbraNFTBaseSetup {
   MerkleDistributor public distributor;
   bytes32 ZeroBytes32 = bytes32(0);
 
-  function setUp() public {
+  function setUp() public override {
+    super.setUp();
     distributor = new MerkleDistributor(address(collectible), ZeroBytes32);
   }
 
@@ -38,7 +39,8 @@ contract MerkleDistributorTwoLeafTree is UmbraNFTBaseSetup {
   address public addr2 = hevm.addr(2);
   event Claimed(uint256 index, address account);
 
-  function setUp() public {
+  function setUp() public override {
+    super.setUp();
     tree = new Merkle();
     data[0] = bytes32(keccak256(abi.encodePacked(uint256(0), addr1)));
     data[1] = bytes32(keccak256(abi.encodePacked(uint256(1), addr2)));

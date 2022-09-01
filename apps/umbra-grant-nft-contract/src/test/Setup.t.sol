@@ -9,7 +9,7 @@ abstract contract UmbraNFTBaseSetup is DSTestPlus {
   address public minterAddr;
   address public randomAddr;
 
-  constructor() {
+  function setUp() public virtual {
     minterAddr = hevm.addr(0xBEEF);
     randomAddr = hevm.addr(1);
     collectible = new UmbraGrantNFT(
@@ -21,7 +21,8 @@ abstract contract UmbraNFTBaseSetup is DSTestPlus {
 }
 
 abstract contract UmbraNFTIntialized is UmbraNFTBaseSetup {
-  constructor() {
+  function setUp() public virtual override {
+    super.setUp();
     collectible.initialize(minterAddr);
   }
 }
