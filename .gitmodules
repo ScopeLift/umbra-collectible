@@ -4,3 +4,12 @@
 [submodule "apps/umbra-grant-nft-contract/lib/forge-std"]
 	path = apps/umbra-grant-nft-contract/lib/forge-std
 	url = https://github.com/foundry-rs/forge-std
+[submodule "apps/umbra-grant-nft-contract/lib/solmate"]
+	path = apps/umbra-grant-nft-contract/lib/solmate
+	url = https://github.com/transmissions11/solmate
+[submodule "apps/umbra-grant-nft-contract/lib/openzeppelin-contracts"]
+	path = apps/umbra-grant-nft-contract/lib/openzeppelin-contracts
+	url = https://github.com/OpenZeppelin/openzeppelin-contracts
+[submodule "apps/umbra-grant-nft-contract/lib/ds-test"]
+	path = apps/umbra-grant-nft-contract/lib/ds-test
+	url = https://github.com/dapphub/ds-test
