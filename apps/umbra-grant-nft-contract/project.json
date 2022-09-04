@@ -12,6 +12,12 @@
     "install": {
       "executor": "@nrwl/workspace:run-commands",
       "options": {
+        "command": "forge install --root apps/umbra-grant-nft-contract"
+      }
+    },
+    "add": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
         "command": "forge install --root apps/umbra-grant-nft-contract {args.package} --no-commit"
       }
     },
