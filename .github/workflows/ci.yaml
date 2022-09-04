@@ -29,6 +29,9 @@ jobs:
           node-version: 16.x
           cache: "yarn"
       - run: yarn install
+      - run: |
+          touch .env
+          echo CONTRIBUTION_DATA_PATH=script/data/contributors.json >> .env
       - run: npx nx affected:lint --base $BASE
       - name: Test
         run: npx nx affected:test --base $BASE
