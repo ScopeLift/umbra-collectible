@@ -2,8 +2,9 @@
   "$schema": "./node_modules/nx/schemas/workspace-schema.json",
   "version": 2,
   "projects": {
-    "umbra-grant-nft-contract": "apps/umbra-grant-nft-contract",
     "frontend": "apps/frontend",
-    "frontend-e2e": "apps/frontend-e2e"
+    "frontend-e2e": "apps/frontend-e2e",
+    "umbra-grant-contract-client": "libs/umbra-grant-contract-client",
+    "umbra-grant-nft-contract": "apps/umbra-grant-nft-contract"
   }
 }
