@@ -2,7 +2,7 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 import { MerkleTree } from "merkletreejs";
 
 import addresses from "../utils/addresses.json";
-import keccak256 from "keccak256";
+import { keccak256 } from "ethers/lib/utils";
 
 export type MerkleContextType = {
   merkleTree: MerkleTree | null;
