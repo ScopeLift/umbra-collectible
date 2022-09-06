@@ -10,6 +10,8 @@ import {
 import { chain, createClient, configureChains, WagmiConfig } from "wagmi";
 import { infuraProvider } from "wagmi/providers/infura";
 import { publicProvider } from "wagmi/providers/public";
+
+import { MerkleProvider } from "../contexts/MerkleContext";
 const { chains, provider, webSocketProvider } = configureChains(
   [
     chain.polygon,
@@ -53,7 +55,9 @@ function CustomApp({ Component, pageProps }: AppProps) {
       </Head>
       <WagmiConfig client={wagmiClient}>
         <RainbowKitProvider appInfo={appInfo} chains={chains}>
-          <Component {...pageProps} />
+          <MerkleProvider>
+            <Component {...pageProps} />
+          </MerkleProvider>
         </RainbowKitProvider>
       </WagmiConfig>
     </>
