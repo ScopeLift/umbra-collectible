@@ -1,0 +1,39 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/umbra-grant-contract-client/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/umbra-grant-contract-client",
+        "main": "libs/umbra-grant-contract-client/src/index.ts",
+        "tsConfig": "libs/umbra-grant-contract-client/tsconfig.lib.json",
+        "assets": ["libs/umbra-grant-contract-client/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/umbra-grant-contract-client/**/*.ts"]
+      }
+    },
+    "typechain": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "typechain --target ethers-v5 --out-dir ./libs/umbra-grant-contract-client/src/lib/generated ./apps/umbra-grant-nft-contract/out/MerkleDistributor.sol/*.json"
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/umbra-grant-contract-client"],
+      "options": {
+        "jestConfig": "libs/umbra-grant-contract-client/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
