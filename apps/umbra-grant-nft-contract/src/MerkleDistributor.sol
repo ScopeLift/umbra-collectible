@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.13;
 
-import "@openzeppelin/contracts/utils/cryptography/MerkleProof.sol";
+import {Merkle} from "murky/Merkle.sol";
 import "./interfaces/IMerkleDistributor.sol";
 import "./interfaces/IMintableNFT.sol";
 
@@ -43,7 +43,7 @@ contract MerkleDistributor is IMerkleDistributor {
     // Verify the merkle proof.
     bytes32 node = keccak256(abi.encodePacked(index, account));
     require(
-      MerkleProof.verify(merkleProof, merkleRoot, node),
+      new Merkle().verifyProof(merkleRoot, merkleProof, node),
       "MerkleDistributor: Invalid proof."
     );
 

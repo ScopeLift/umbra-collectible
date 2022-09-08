@@ -1,17 +1,24 @@
 import addresses from "../utils/addresses.json" assert { type: "json" };
-import { ethers } from "ethers";
 import fs from "fs";
+import AccountTree from "./helpers/accountTree.mjs";
 
 const main = () => {
-  const leaves = addresses["addresses"].map((address, index) => {
-    return ethers.utils.keccak256(
-      ethers.utils.solidityPack(["uint256", "address"], [index, address[0]])
-    );
+  const tree = new AccountTree(addresses["addresses"]);
+  let claims = {};
+  addresses["addresses"].map((address, index) => {
+    claims[address] = {
+      account: address,
+      index,
+      proof: tree.getProof(index, address),
+    };
   });
 
+  fs.writeFile("./utils/merkleData.json", JSON.stringify(claims), (err) => {
+    console.log(err);
+  });
   fs.writeFile(
-    "./utils/merkleLeaves.json",
-    JSON.stringify({ leaves: leaves }),
+    "../umbra-grant-nft-contract/script/data/root.json",
+    JSON.stringify({ root: tree.getHexRoot() }),
     (err) => {
       console.log(err);
     }
