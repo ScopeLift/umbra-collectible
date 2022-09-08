@@ -1,29 +1,34 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { MerkleTree } from "merkletreejs";
-import { ethers } from "ethers";
+import { useAccount } from "wagmi";
 
-import leavesJsonfrom from "../utils/merkleLeaves.json";
-import { keccak256 } from "ethers/lib/utils";
+import merkleData from "../utils/merkleData.json";
+
+type Node = {
+  acccount: string;
+  index: number;
+  proof: string[];
+};
 
 export type MerkleContextType = {
-  merkleTree: MerkleTree | null;
+  node: Node | null;
 };
 
 const initialContext = {
-  merkleTree: null,
+  node: null,
 };
 
 const MerkleContext = createContext<MerkleContextType>(initialContext);
 
 export const MerkleProvider = ({ children }) => {
-  const [merkleTree, setMerkleTree] = useState(null);
+  const [node, setNode] = useState(null);
+  const { address } = useAccount();
   useEffect(() => {
-    setMerkleTree(new MerkleTree(leavesJsonfrom["leaves"], keccak256));
-  }, []);
+    setNode(merkleData[address]);
+  }, [address]);
   return (
     <MerkleContext.Provider
       value={{
-        merkleTree,
+        node,
       }}
     >
       {children}

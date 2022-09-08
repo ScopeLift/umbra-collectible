@@ -12,6 +12,7 @@
     "@coinbase/wallet-sdk": "^3.5.2",
     "@rainbow-me/rainbowkit": "^0.5.1",
     "@typechain/ethers-v5": "^10.1.0",
+    "@uniswap/merkle-distributor": "^1.0.1",
     "core-js": "^3.6.5",
     "ethers": "^5.7.0",
     "merkletreejs": "^0.2.32",

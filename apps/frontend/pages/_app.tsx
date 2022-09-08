@@ -21,6 +21,7 @@ const { chains, provider, webSocketProvider } = configureChains(
       chain.rinkeby,
       chain.goerli,
       chain.foundry,
+      chain.polygonMumbai,
     ]),
   ],
   [infuraProvider({ apiKey: process.env.INFURA_API_KEY }), publicProvider()]

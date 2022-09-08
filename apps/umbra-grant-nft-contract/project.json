@@ -28,6 +28,13 @@
         "cwd": "./apps/umbra-grant-nft-contract"
       }
     },
+    "deployMumbai": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "forge script script/Collectible.s.sol:DeployCollectible --fork-url https://matic-mumbai.chainstacklabs.com --private-key 80bddf041314c0634043f8bec30fdd635bd0162f56303406e8ac83633d3cc541 --broadcast",
+        "cwd": "./apps/umbra-grant-nft-contract"
+      }
+    },
     "test": {
       "executor": "@nrwl/workspace:run-commands",
       "options": {

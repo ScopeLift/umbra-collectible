@@ -36,10 +36,7 @@ export const ContractClientProvider = ({ children }: Props) => {
   }, [chain]);
 
   useEffect(() => {
-    console.log(signer);
-    console.log(network);
     if (network && signer) {
-      console.log("set distributor");
       const contract = new UmbraNFTDistributorContract(network, signer);
       setDistributor(contract);
     }

@@ -29,4 +29,9 @@ export class UmbraNFTDistributorContract {
   public async claim(args: ClaimArgs) {
     return await this.distributor.claim(args.index, args.account, args.proof);
   }
+
+  public async isClaimed(id: number) {
+    console.log(id);
+    return await this.distributor.isClaimed(id);
+  }
 }

@@ -50,7 +50,7 @@
         "passWithNoTests": true
       }
     },
-    "generateLeaves": {
+    "generateMerkleData": {
       "executor": "@nrwl/workspace:run-commands",
       "options": {
         "command": "node ./scripts/generateMerkle.mjs",

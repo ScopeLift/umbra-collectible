@@ -1,14 +1,12 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { ethers } from "ethers";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import styled from "styled-components";
 import { useAccount } from "wagmi";
 
 import { useMerkle } from "../contexts/MerkleContext";
 import { useClaim } from "../hooks/useClaim";
-import { keccak256 } from "ethers/lib/utils";
-import addresses from "../utils/addresses.json";
 
+// Initial styles this will change
 const StyledPage = styled.div`
   display: flex;
   flex-direction: column;
@@ -17,16 +15,40 @@ const StyledPage = styled.div`
   height: 80vh;
 `;
 
+const StyledButton = styled.button`
+  font-size: 14px;
+  line-height: 1.715em;
+  font-weight: 500;
+  color: #d69903;
+  background: none;
+  border: 1px solid #d69903;
+  border-radius: 5px;
+`;
+
 export function Index() {
   const [proof, setProof] = useState([]);
   const [index, setIndex] = useState(-1);
+  const [isClaimed, setIsClaimed] = useState(false);
   const { address, isConnected } = useAccount();
-  const { merkleTree } = useMerkle();
-  const { claim, isClaiming } = useClaim();
+  const { node } = useMerkle();
+  const { claim, isClaiming, checkIsClaimed } = useClaim();
+
+  useEffect(() => {
+    const f = async () => {
+      setIsClaimed(await checkIsClaimed(index));
+    };
+    f();
+  }, [index, checkIsClaimed]);
 
   const content = useCallback(() => {
-    if (isConnected && proof.length) {
-      console.log(proof);
+    if (isConnected && proof.length && isClaimed) {
+      return (
+        <>
+          <h1>You have already claimed your Umbra NFT</h1>
+          <ConnectButton />
+        </>
+      );
+    } else if (isConnected && proof.length) {
       return (
         <>
           <h1>Claim your Umbra NFT</h1>
@@ -34,13 +56,15 @@ export function Index() {
           {isClaiming ? (
             <>Claiming...</>
           ) : (
-            <button onClick={() => claim({ account: address, index, proof })}>
+            <StyledButton
+              onClick={() => claim({ account: address, index, proof })}
+            >
               Claim
-            </button>
+            </StyledButton>
           )}
         </>
       );
-    } else if (isConnected && !proof.length && merkleTree) {
+    } else if (isConnected && !node) {
       return (
         <>
           <h1>Your Address does not qualify</h1>
@@ -55,36 +79,14 @@ export function Index() {
         </>
       );
     }
-  }, [isConnected, proof, address, claim]);
+  }, [isConnected, proof, address, claim, index, node, isClaiming, isClaimed]);
 
   useEffect(() => {
-    console.log("index");
-    console.log(index);
-    console.log([address]);
-    console.log(addresses["addresses"]);
-    let effectIndex = index;
-    for (const [idx, addr] of addresses["addresses"].entries()) {
-      if (addr[0] === address) {
-        effectIndex = idx;
-        setIndex(idx);
-        break;
-      }
+    if (address && node) {
+      setProof(node.proof);
+      setIndex(node.index);
     }
-    if (address && effectIndex >= 0 && merkleTree) {
-      const root = merkleTree.getRoot();
-      console.log("root");
-      console.log(root);
-      console.log(root.toString());
-      console.log(root.toString("hex"));
-      setProof(
-        merkleTree.getHexProof(
-          keccak256(
-            ethers.utils.solidityPack(["uint256", "address"], [index, address])
-          )
-        )
-      );
-    }
-  }, [address, merkleTree]);
+  }, [address, node]);
 
   return <StyledPage>{content()}</StyledPage>;
 }
