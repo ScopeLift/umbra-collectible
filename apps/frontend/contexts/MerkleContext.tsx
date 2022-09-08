@@ -1,7 +1,8 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { MerkleTree } from "merkletreejs";
+import { ethers } from "ethers";
 
-import addresses from "../utils/addresses.json";
+import leavesJsonfrom from "../utils/merkleLeaves.json";
 import { keccak256 } from "ethers/lib/utils";
 
 export type MerkleContextType = {
@@ -17,10 +18,7 @@ const MerkleContext = createContext<MerkleContextType>(initialContext);
 export const MerkleProvider = ({ children }) => {
   const [merkleTree, setMerkleTree] = useState(null);
   useEffect(() => {
-    const leaves = addresses["addresses"].map((address) => {
-      return keccak256(address[0]);
-    });
-    setMerkleTree(new MerkleTree(leaves, keccak256));
+    setMerkleTree(new MerkleTree(leavesJsonfrom["leaves"], keccak256));
   }, []);
   return (
     <MerkleContext.Provider

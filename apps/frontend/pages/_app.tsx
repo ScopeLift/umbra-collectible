@@ -12,12 +12,15 @@ import { infuraProvider } from "wagmi/providers/infura";
 import { publicProvider } from "wagmi/providers/public";
 
 import { MerkleProvider } from "../contexts/MerkleContext";
+import { ContractClientProvider } from "../contexts/ContractClientContext";
+import { networks } from "../utils/networks";
 const { chains, provider, webSocketProvider } = configureChains(
   [
     chain.polygon,
     ...(process.env.NEXT_PUBLIC_ENABLE_TESTNETS === "true" && [
       chain.rinkeby,
       chain.goerli,
+      chain.foundry,
     ]),
   ],
   [infuraProvider({ apiKey: process.env.INFURA_API_KEY }), publicProvider()]
@@ -55,9 +58,11 @@ function CustomApp({ Component, pageProps }: AppProps) {
       </Head>
       <WagmiConfig client={wagmiClient}>
         <RainbowKitProvider appInfo={appInfo} chains={chains}>
-          <MerkleProvider>
-            <Component {...pageProps} />
-          </MerkleProvider>
+          <ContractClientProvider networks={networks}>
+            <MerkleProvider>
+              <Component {...pageProps} />
+            </MerkleProvider>
+          </ContractClientProvider>
         </RainbowKitProvider>
       </WagmiConfig>
     </>
