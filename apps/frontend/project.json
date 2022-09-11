@@ -53,7 +53,7 @@
     "generateMerkleData": {
       "executor": "@nrwl/workspace:run-commands",
       "options": {
-        "command": "node ./scripts/generateMerkle.mjs",
+        "command": "ts-node ./scripts/generateMerkle.ts",
         "cwd": "apps/frontend"
       }
     },
