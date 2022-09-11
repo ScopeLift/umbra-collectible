@@ -33,8 +33,8 @@ jobs:
           touch .env
           echo NEXT_PUBLIC_ENABLE_TESTNETS=true >> .env
           echo INFURA_API_KEY= >> .env
-          echo NEXT_PUBLIC_MUMBAI_CONTRACT_ADDRESS=0x80c37e23ece7e3b5f2cd29a3fe4d24c55283f0f0 >> .env
-          echo NEXT_PUBLIC_LOCAL_CONTRACT_ADDRESS=0xb3a27cd25d671e8df7d9c21c33e4da7cea7ac1a4>> .env
+          echo NEXT_PUBLIC_MUMBAI_CONTRACT_ADDRESS=
+          echo NEXT_PUBLIC_LOCAL_CONTRACT_ADDRESS=
       - run: npx nx affected:lint --base $BASE
       - name: Test
         run: npx nx affected:test --base $BASE

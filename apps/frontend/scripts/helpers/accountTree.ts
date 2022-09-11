@@ -1,7 +1,11 @@
-import MerkleTree from "./merkleTree.mjs";
-import { utils } from "ethers";
+import MerkleTree from "./merkleTree";
+import { utils, BigNumber } from "ethers";
 
+// This class was modified from the below file
+//
+// https://github.com/Uniswap/merkle-distributor/blob/c3255bfa2b684594ecd562cacd7664b0f18330bf/src/balance-tree.ts
 export default class AccountTree {
+  private readonly tree: MerkleTree;
   constructor(accounts) {
     this.tree = new MerkleTree(
       accounts.map((account, index) => {
@@ -10,7 +14,12 @@ export default class AccountTree {
     );
   }
 
-  static verifyProof(index, account, proof, root) {
+  public static verifyProof(
+    index: number | BigNumber,
+    account: string,
+    proof: Buffer[],
+    root: Buffer
+  ): boolean {
     let pair = AccountTree.toNode(index, account);
     for (const item of proof) {
       pair = MerkleTree.combinedHash(pair, item);
@@ -19,8 +28,8 @@ export default class AccountTree {
     return pair.equals(root);
   }
 
-  // keccak256(abi.encode(index, account, amount))
-  static toNode(index, account, amount) {
+  // keccak256(abi.encode(index, account))
+  public static toNode(index: number | BigNumber, account: string): Buffer {
     return Buffer.from(
       utils
         .solidityKeccak256(["uint256", "address"], [index, account])
@@ -29,12 +38,12 @@ export default class AccountTree {
     );
   }
 
-  getHexRoot() {
+  public getHexRoot(): string {
     return this.tree.getHexRoot();
   }
 
   // returns the hex bytes32 values of the proof
-  getProof(index, account, amount) {
+  public getProof(index: number | BigNumber, account: string): string[] {
     return this.tree.getHexProof(AccountTree.toNode(index, account));
   }
 }

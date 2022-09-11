@@ -1,10 +1,11 @@
-import addresses from "../utils/addresses.json" assert { type: "json" };
 import fs from "fs";
-import AccountTree from "./helpers/accountTree.mjs";
+import AccountTree from "./helpers/accountTree";
+
+import addresses from "../utils/addresses.json";
 
 const main = () => {
   const tree = new AccountTree(addresses["addresses"]);
-  let claims = {};
+  const claims = {};
   addresses["addresses"].map((address, index) => {
     claims[address] = {
       account: address,
