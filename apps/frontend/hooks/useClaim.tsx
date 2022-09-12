@@ -1,19 +1,28 @@
-import { useEffect, useCallback, useState } from "react";
-import { useContractClient } from "../contexts/ContractClientContext";
+import { useCallback, useState } from "react";
+import { useProvider } from "wagmi";
 import { ClaimArgs } from "@umbra-collectible/umbra-grant-contract-client";
+
+import { useContractClient } from "../contexts/ContractClientContext";
+import { txNotify, notifyUser } from "../utils/alerts";
 
 export const useClaim = () => {
   const [isClaiming, setIsClaiming] = useState(false);
+  const [checkingClaim, setCheckingClaim] = useState(false);
   const { distributor } = useContractClient();
+  const provider = useProvider();
   const checkIsClaimed = useCallback(
     async (index: number) => {
-      if (!distributor) {
+      if (!distributor || index < 0) {
         return;
       }
       try {
-        return await distributor.isClaimed(index);
+        setCheckingClaim(true);
+        const claimed = await distributor.isClaimed(index);
+        setCheckingClaim(false);
+        return claimed;
       } catch (err) {
         console.log(err);
+        setCheckingClaim(false);
       }
     },
     [distributor]
@@ -27,13 +36,15 @@ export const useClaim = () => {
       try {
         setIsClaiming(true);
         const tx = await distributor.claim({ index, account, proof });
-        tx.wait(1);
+        await txNotify(tx.hash, provider);
         setIsClaiming(false);
+        return true;
       } catch (err) {
+        await notifyUser("error", "Failed to claim NFT");
         setIsClaiming(false);
       }
     },
-    [distributor]
+    [distributor, provider]
   );
-  return { claim, isClaiming, checkIsClaimed };
+  return { claim, isClaiming, checkIsClaimed, checkingClaim };
 };
