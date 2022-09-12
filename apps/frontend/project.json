@@ -53,7 +53,14 @@
     "generateMerkleData": {
       "executor": "@nrwl/workspace:run-commands",
       "options": {
-        "command": "ts-node ./scripts/generateMerkle.ts",
+        "command": "ts-node-esm ./scripts/generateMerkle.ts",
+        "cwd": "apps/frontend"
+      }
+    },
+    "uploadNFT": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "ts-node-esm ./scripts/uploadNFT.ts",
         "cwd": "apps/frontend"
       }
     },

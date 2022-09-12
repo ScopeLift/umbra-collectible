@@ -2,8 +2,8 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "jsx": "preserve",
-    "target": "es5",
-    "module": "commonjs",
+    "target": "ESNEXT",
+    "module": "ESNEXT",
     "allowJs": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,

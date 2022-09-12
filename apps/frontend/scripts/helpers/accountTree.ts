@@ -1,4 +1,4 @@
-import MerkleTree from "./merkleTree";
+import MerkleTree from "./merkleTree.js";
 import { utils, BigNumber } from "ethers";
 
 // This class was modified from the below file

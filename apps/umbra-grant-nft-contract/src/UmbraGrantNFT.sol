@@ -62,6 +62,6 @@ contract UmbraGrantNFT is ERC721, AccessControl, Initializable {
     if (_ownerOf[id] == address(0)) {
       revert TokenDoesNotExist();
     }
-    return "ipfs://bafybeihjajj3baoiuk2b4ny5uodx6uvvb73c67xkqhrvtckdos6xie4kfa";
+    return "ipfs://QmZ5VogPeYhvTkSu5sn4LSs9G8JrjWF8ApGujgJzTHHmDK";
   }
 }

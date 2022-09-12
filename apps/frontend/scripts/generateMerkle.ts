@@ -1,7 +1,7 @@
 import fs from "fs";
-import AccountTree from "./helpers/accountTree";
+import AccountTree from "./helpers/accountTree.js";
 
-import addresses from "../utils/addresses.json";
+import addresses from "../utils/addresses.json" assert { type: "json" };
 
 const main = () => {
   const tree = new AccountTree(addresses["addresses"]);
