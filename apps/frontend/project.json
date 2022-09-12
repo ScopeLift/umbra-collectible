@@ -42,14 +42,6 @@
         "buildTarget": "frontend:build:production"
       }
     },
-    "test": {
-      "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/frontend"],
-      "options": {
-        "jestConfig": "apps/frontend/jest.config.ts",
-        "passWithNoTests": true
-      }
-    },
     "generateMerkleData": {
       "executor": "@nrwl/workspace:run-commands",
       "options": {
