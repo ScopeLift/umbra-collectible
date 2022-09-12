@@ -180,8 +180,6 @@ export class MerkleDistributor__factory extends ContractFactory {
     address: string,
     signerOrProvider: Signer | Provider
   ): MerkleDistributor {
-    console.log(address);
-    console.log(signerOrProvider);
     return new Contract(address, _abi, signerOrProvider) as MerkleDistributor;
   }
 }

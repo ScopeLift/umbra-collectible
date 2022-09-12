@@ -35,6 +35,9 @@ jobs:
           echo INFURA_API_KEY= >> .env
           echo NEXT_PUBLIC_MUMBAI_CONTRACT_ADDRESS=
           echo NEXT_PUBLIC_LOCAL_CONTRACT_ADDRESS=
+          echo NEXT_PUBLIC_RINKEBY_CONTRACT_ADDRESS=
+          echo NEXT_PUBLIC_GOERLI_CONTRACT_ADDRESS=
+          echo NEXT_PUBLIC_POLYGON_CONTRACT_ADDRESS=
       - run: npx nx affected:lint --base $BASE
       - name: Test
         run: npx nx affected:test --base $BASE
