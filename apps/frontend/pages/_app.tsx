@@ -25,12 +25,13 @@ import GlobalStyle from "../utils/globalStyles";
 const { chains, provider, webSocketProvider } = configureChains(
   [
     chain.polygon,
-    ...(process.env.NEXT_PUBLIC_ENABLE_TESTNETS === "true" && [
+    ...((process.env.NEXT_PUBLIC_ENABLE_TESTNETS === "true" && [
       chain.rinkeby,
       chain.goerli,
       chain.foundry,
       chain.polygonMumbai,
-    ]),
+    ]) ||
+      []),
   ],
   [infuraProvider({ apiKey: process.env.INFURA_API_KEY }), publicProvider()]
 );
@@ -53,7 +54,7 @@ const connectors = connectorsForWallets([
 ]);
 
 const wagmiClient = createClient({
-  autoConnect: true,
+  autoConnect: false,
   connectors,
   provider,
   webSocketProvider,
