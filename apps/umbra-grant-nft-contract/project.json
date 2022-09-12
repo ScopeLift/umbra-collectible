@@ -28,11 +28,29 @@
         "cwd": "./apps/umbra-grant-nft-contract"
       }
     },
-    "deployMumbai": {
+    "deploy": {
       "executor": "@nrwl/workspace:run-commands",
-      "options": {
-        "command": "forge script script/Collectible.s.sol:DeployCollectible --fork-url https://matic-mumbai.chainstacklabs.com --private-key 80bddf041314c0634043f8bec30fdd635bd0162f56303406e8ac83633d3cc541 --broadcast",
-        "cwd": "./apps/umbra-grant-nft-contract"
+      "configurations": {
+        "local": {
+          "command": "forge script script/Collectible.s.sol:DeployCollectible --fork-url http://localhost:8545 --private-key $LOCAL_PRIVATE_KEY --broadcast",
+          "cwd": "./apps/umbra-grant-nft-contract"
+        },
+        "mumbai": {
+          "command": "forge script script/Collectible.s.sol:DeployCollectible --fork-url https://matic-mumbai.chainstacklabs.com --private-key $MUMBAI_PRIVATE_KEY --broadcast",
+          "cwd": "./apps/umbra-grant-nft-contract"
+        },
+        "rinkeby": {
+          "command": "forge script script/Collectible.s.sol:DeployCollectible --fork-url https://rpc.ankr.com/eth_rinkeby --private-key $RINKEBY_PRIVATE_KEY --broadcast",
+          "cwd": "./apps/umbra-grant-nft-contract"
+        },
+        "goerli": {
+          "command": "forge script script/Collectible.s.sol:DeployCollectible --fork-url https://goerli.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161 --private-key $GOERLI_PRIVATE_KEY --broadcast",
+          "cwd": "./apps/umbra-grant-nft-contract"
+        },
+        "polygon": {
+          "command": "forge script script/Collectible.s.sol:DeployCollectible --fork-url https://polygon-rpc.com --private-key $POLYGON_PRIVATE_KEY --broadcast",
+          "cwd": "./apps/umbra-grant-nft-contract"
+        }
       }
     },
     "test": {
