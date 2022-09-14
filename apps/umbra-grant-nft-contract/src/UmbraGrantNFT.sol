@@ -41,7 +41,7 @@ contract UmbraGrantNFT is ERC721, AccessControl, Initializable {
     if (block.timestamp > claimPeriodEnd) {
       revert ClaimPeriodClosed();
     }
-    _safeMint(to, id);
+    _mint(to, id);
   }
 
   function supportsInterface(bytes4 interfaceId)
@@ -52,10 +52,8 @@ contract UmbraGrantNFT is ERC721, AccessControl, Initializable {
     returns (bool)
   {
     return
-      interfaceId == 0x01ffc9a7 || // ERC165 Interface ID for ERC165
-      interfaceId == 0x80ac58cd || // ERC165 Interface ID for ERC721
-      interfaceId == 0x5b5e139f || // ERC165 Interface ID for ERC721Metadata
-      super.supportsInterface(interfaceId);
+      ERC721.supportsInterface(interfaceId) ||
+      AccessControl.supportsInterface(interfaceId);
   }
 
   function tokenURI(uint256 id) public view override returns (string memory) {
