@@ -42,10 +42,10 @@
         "buildTarget": "frontend:build:production"
       }
     },
-    "generateMerkleData": {
+    "generateMerkleRoot": {
       "executor": "@nrwl/workspace:run-commands",
       "options": {
-        "command": "ts-node-esm ./scripts/generateMerkle.ts",
+        "command": "NODE_OPTIONS='--experimental-specifier-resolution=node' ts-node-esm ./scripts/generateMerkleRoot.ts",
         "cwd": "apps/frontend"
       }
     },

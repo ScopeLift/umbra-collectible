@@ -42,7 +42,9 @@ export function Index() {
 
   useEffect(() => {
     const f = async () => {
-      setIsClaimed(await checkIsClaimed(index));
+      if (index > -1) {
+        setIsClaimed(await checkIsClaimed(index));
+      }
     };
     f();
   }, [index, checkIsClaimed]);
@@ -143,6 +145,8 @@ export function Index() {
   ]);
 
   useEffect(() => {
+    console.log(address);
+    console.log(node);
     if (address && node) {
       setProof(node.proof);
       setIndex(node.index);

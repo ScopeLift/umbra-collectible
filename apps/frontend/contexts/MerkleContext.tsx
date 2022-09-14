@@ -1,7 +1,15 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 import { useAccount } from "wagmi";
+import AccountTree from "../utils/tree/accountTree";
+import { ethers } from "ethers";
 
-import merkleData from "../utils/merkleData.json";
+import addresses from "../utils/addresses.json";
 
 type Node = {
   acccount: string;
@@ -22,9 +30,20 @@ const MerkleContext = createContext<MerkleContextType>(initialContext);
 export const MerkleProvider = ({ children }) => {
   const [node, setNode] = useState(null);
   const { address } = useAccount();
+  const tree = useMemo(() => new AccountTree(addresses["addresses"]), []);
+
   useEffect(() => {
-    setNode(merkleData[address]);
-  }, [address]);
+    if (!address) {
+      return;
+    }
+    const index = addresses["addresses"].findIndex((addr) => addr === address);
+    const proof = tree.getProof(index, address);
+    setNode({
+      account: address,
+      index,
+      proof,
+    });
+  }, [address, tree]);
   return (
     <MerkleContext.Provider
       value={{
