@@ -11,7 +11,20 @@ const StyledHeader = styled.header`
 `;
 
 const LogoContainer = styled.div`
-  max-width: 5rem;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+
+  h2 {
+    display: none;
+
+    @media ${({ theme }) => `${theme.devices.md}`} {
+      display: block;
+      color: ${({ theme }) => `${theme.colors.primary}`};
+      font-weight: ${({ theme }) => `${theme.text.weight.extraBold}`};
+      font-size: 3.2rem;
+    }
+  }
 `;
 
 const Header = () => {
@@ -23,7 +36,9 @@ const Header = () => {
           alt="Umbra cash logo"
           height="50px"
           width="50px"
+          layout="fixed"
         />
+        <h2>Umbra Collectible</h2>
       </LogoContainer>
       <ConnectButton />
     </StyledHeader>

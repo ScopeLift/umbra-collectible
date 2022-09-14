@@ -40,7 +40,7 @@ export const ContractClientProvider = ({ children }: Props) => {
       const contract = new UmbraNFTDistributorContract(network, signer);
       setDistributor(contract);
     }
-  }, [chain, signer, network]);
+  }, [signer, network]);
 
   return (
     <ContractClientContext.Provider value={{ distributor }}>

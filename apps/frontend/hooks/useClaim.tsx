@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useProvider } from "wagmi";
 import { ClaimArgs } from "@umbra-collectible/umbra-grant-contract-client";
 
@@ -8,7 +8,26 @@ import { txNotify, notifyUser } from "../utils/alerts";
 export const useClaim = () => {
   const [isClaiming, setIsClaiming] = useState(false);
   const [checkingClaim, setCheckingClaim] = useState(false);
+  const [nftAddress, setNFTAddress] = useState("");
   const { distributor } = useContractClient();
+
+  useEffect(() => {
+    const f = async () => {
+      if (!distributor) {
+        return;
+      }
+      try {
+        const nft = await distributor.collectible();
+        if (nft) {
+          setNFTAddress(nft);
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    f();
+  }, [distributor]);
+
   const provider = useProvider();
   const checkIsClaimed = useCallback(
     async (index: number) => {
@@ -46,5 +65,5 @@ export const useClaim = () => {
     },
     [distributor, provider]
   );
-  return { claim, isClaiming, checkIsClaimed, checkingClaim };
+  return { claim, isClaiming, checkIsClaimed, checkingClaim, nftAddress };
 };

@@ -1,5 +1,3 @@
-import { BsDiscord, BsGithub } from "react-icons/bs";
-import { GrTwitter, GrMail } from "react-icons/gr";
 import styled from "styled-components";
 
 const StyledFooter = styled.footer`
@@ -29,11 +27,6 @@ const StyledFooter = styled.footer`
     }
   }
 
-  a {
-    color: #8a6302;
-    text-decoration: underline;
-  }
-
   @media ${({ theme }) => `${theme.devices.md}`} {
     justify-content: flex-start;
     margin: 3rem 3rem 0 3rem;
@@ -43,6 +36,10 @@ const StyledFooter = styled.footer`
 const ItemContainer = styled.div`
   display: flex;
   flex-direction: column;
+
+  span {
+    margin-bottom: 1rem;
+  }
 
   @media ${({ theme }) => `${theme.devices.md}`} {
     margin-right: 8rem;
@@ -55,35 +52,15 @@ const Footer = () => {
       <ItemContainer>
         <h3>About</h3>
         <span>
-          Built by <a href="https://www.scopelift.co/">ScopeLift</a>
+          Built by <a href="https://www.scopelift.co/">ScopeLift</a> for
+          supporters of Umbra&apos;s{" "}
+          <a href="https://gitcoin.co/grants/821/umbra-privacy-preserving-stealth-payments">
+            Gitcoin Grant
+          </a>
         </span>
-      </ItemContainer>
-      <ItemContainer>
-        <h3>Links</h3>
-        <p>
-          <a href="https://twitter.com/UmbraCash">
-            <GrTwitter />
-            <span>Twitter</span>
-          </a>
-        </p>
-        <p>
-          <a href="https://discord.com/invite/uw4y5J2p7C">
-            <BsDiscord />
-            <span>Discord</span>
-          </a>
-        </p>
-        <p>
-          <a href="https://github.com/ScopeLift/umbra-protocol">
-            <BsGithub />
-            <span>Github</span>
-          </a>
-        </p>
-        <p>
-          <a href="mailto:support@umbra.cash">
-            <GrMail />
-            <span>support@umbra.cash</span>
-          </a>
-        </p>
+        <span>
+          Visit the <a href="https://app.umbra.cash/">Umbra App</a>
+        </span>
       </ItemContainer>
     </StyledFooter>
   );
