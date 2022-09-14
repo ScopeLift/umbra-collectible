@@ -3,7 +3,6 @@
   "version": 2,
   "projects": {
     "frontend": "apps/frontend",
-    "frontend-e2e": "apps/frontend-e2e",
     "umbra-grant-contract-client": "libs/umbra-grant-contract-client",
     "umbra-grant-nft-contract": "apps/umbra-grant-nft-contract"
   }

@@ -21,13 +21,6 @@
         "command": "forge install --root apps/umbra-grant-nft-contract {args.package} --no-commit"
       }
     },
-    "deployLocal": {
-      "executor": "@nrwl/workspace:run-commands",
-      "options": {
-        "command": "forge script script/Collectible.s.sol:DeployCollectible --fork-url http://localhost:8545 --private-key $PRIVATE_KEY0 --broadcast",
-        "cwd": "./apps/umbra-grant-nft-contract"
-      }
-    },
     "deploy": {
       "executor": "@nrwl/workspace:run-commands",
       "configurations": {
@@ -48,7 +41,7 @@
           "cwd": "./apps/umbra-grant-nft-contract"
         },
         "polygon": {
-          "command": "forge script script/Collectible.s.sol:DeployCollectible --fork-url https://polygon-rpc.com --private-key $POLYGON_PRIVATE_KEY --broadcast",
+          "command": "forge script script/Collectible.s.sol:DeployCollectible --fork-url https://polygon-rpc.com --private-key $POLYGON_PRIVATE_KEY --broadcast --legacy",
           "cwd": "./apps/umbra-grant-nft-contract"
         }
       }

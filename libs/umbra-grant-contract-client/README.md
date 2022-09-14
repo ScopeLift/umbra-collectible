@@ -1,6 +1,6 @@
 # umbra-grant-contract-client
 
-This library was generated with [Nx](https://nx.dev).
+A library that wraps the Umbra grant merkle distributor contract using typechain.
 
 ## Building
 
