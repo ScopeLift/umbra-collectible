@@ -25,6 +25,13 @@ const GlobalStyle = createGlobalStyle`
     font-size: 1.6rem;
   }
 
+  a {
+    color: #8a6302;
+    text-decoration: underline;
+  }
+
+
+
 `;
 
 export default GlobalStyle;

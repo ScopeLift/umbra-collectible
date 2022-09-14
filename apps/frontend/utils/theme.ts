@@ -45,6 +45,7 @@ export const theme = {
   },
   text: {
     weight: {
+      extraBold: "800",
       bold: "700",
       semibold: "600",
       normal: "400",

@@ -31,7 +31,10 @@ export class UmbraNFTDistributorContract {
   }
 
   public async isClaimed(id: number) {
-    console.log(id);
     return await this.distributor.isClaimed(id);
+  }
+
+  public async collectible() {
+    return await this.distributor.collectible();
   }
 }

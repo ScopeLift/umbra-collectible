@@ -16,13 +16,13 @@ export const networks = {
   137: {
     chainId: 137,
     address: process.env.NEXT_PUBLIC_POLYGON_CONTRACT_ADDRESS,
-    name: "Polygon",
+    name: "Matic",
     blockExplorerUrl: "https://polygonscan.com/",
   },
   80001: {
     chainId: 80001,
     address: process.env.NEXT_PUBLIC_MUMBAI_CONTRACT_ADDRESS,
-    name: "PolygonMumbai",
+    name: "Mumbai",
     blockExplorerUrl: "https://mumbai.polygonscan.com/",
   },
   31337: {
