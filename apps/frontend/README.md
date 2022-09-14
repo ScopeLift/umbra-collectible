@@ -36,10 +36,10 @@ Once everything is set up, you'll be able to run the app with the below command.
 
 ### Setting up scripts
 
-There are two scripts one to generate a mapping of index to user proof metadata and another to upload the NFT to IPFS. They can be run with the below commands.
+There are two scripts one to generate a merkle root and another to upload the NFT to IPFS. They can be run with the below commands.
 
 `nx run frontend:uploadNFT`
 
 This upload command will require an infura project id and secret.
 
-`nx run frontend:generateMerkleData`
+`nx run frontend:generateMerkleRoot`
