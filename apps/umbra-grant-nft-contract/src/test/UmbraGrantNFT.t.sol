@@ -82,7 +82,7 @@ contract UmbraGrantNFTTokenUriTest is UmbraNFTIntialized {
     collectible.mint(randomAddr, 1);
     string memory uri = collectible.tokenURI(1);
     string
-      memory expectedUri = "ipfs://QmWTgp81BjzSZL1zmXQGGEDfL1kd7UMLWjk2SpYSvNuF9S";
+      memory expectedUri = "ipfs://QmTr1uNQogh2kKR356qLWcAtpMCCwLMb5MRutkAbPtRdHQ";
     assertEq(uri, expectedUri);
   }
 }

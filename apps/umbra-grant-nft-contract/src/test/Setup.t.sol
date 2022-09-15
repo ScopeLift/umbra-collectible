@@ -13,7 +13,7 @@ abstract contract UmbraNFTBaseSetup is DSTestPlus {
     minterAddr = hevm.addr(0xBEEF);
     randomAddr = hevm.addr(1);
     collectible = new UmbraGrantNFT(
-      "Umbra OG Supporter",
+      "Umbra OG Supporters",
       "UMBRAOG",
       1692052154
     );
