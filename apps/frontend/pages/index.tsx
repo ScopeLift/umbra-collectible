@@ -52,7 +52,7 @@ export function Index() {
   const content = useCallback(() => {
     if (isConnected && proof.length && isClaimed) {
       const network = networks[chain.id];
-      let url = "https://opensea.io/";
+      let url = "https://opensea.io";
       if (chain.testnet) {
         url = "https://testnets.opensea.io";
       }

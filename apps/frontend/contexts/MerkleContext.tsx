@@ -37,12 +37,16 @@ export const MerkleProvider = ({ children }) => {
       return;
     }
     const index = addresses["addresses"].findIndex((addr) => addr === address);
-    const proof = tree.getProof(index, address);
-    setNode({
-      account: address,
-      index,
-      proof,
-    });
+    try {
+      const proof = tree.getProof(index, address);
+      setNode({
+        account: address,
+        index,
+        proof,
+      });
+    } catch (err) {
+      setNode(null);
+    }
   }, [address, tree]);
   return (
     <MerkleContext.Provider
