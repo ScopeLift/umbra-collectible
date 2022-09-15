@@ -63,6 +63,6 @@ nx run frontend:build
 This guide assumes you have setup the correct environment variables documented in each apps README.
 
 1. Add your addresses to ./utils/addresses.json
-2. Generate the root with `nx run frontend:generateRoot`
+2. Generate the root with `nx run frontend:generateMerkleRoot`
 3. Deploy contracts to goerli `nx run umbra-grant-nft-contract:deploy:goerli`
 4. Build the frontend as a static site using `nx run frontend:export` and upload `./dist/apps/frontend/exported` to your favorite hosting platform.
