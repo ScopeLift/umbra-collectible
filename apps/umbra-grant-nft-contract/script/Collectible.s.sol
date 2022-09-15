@@ -22,7 +22,7 @@ contract DeployCollectible is Script {
 
     vm.broadcast();
     UmbraGrantNFT nft = new UmbraGrantNFT(
-      "Umbra OG Supporter",
+      "Umbra OG Supporters",
       "UMBRAOG",
       block.timestamp + 365 days
     );

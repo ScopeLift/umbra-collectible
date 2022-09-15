@@ -17,7 +17,7 @@ contract CollectibleDeployTests is DSTestPlus {
 
   function testNFTArgs() public {
     UmbraGrantNFT nft = UmbraGrantNFT(nftAddr);
-    assertEq(nft.name(), "Umbra OG Supporter");
+    assertEq(nft.name(), "Umbra OG Supporters");
     assertEq(nft.symbol(), "UMBRAOG");
     assertEq(nft.claimPeriodEnd(), block.timestamp + 365 days);
     assertTrue(nft.hasRole(nft.MINTER_ROLE(), distributorAddr));
