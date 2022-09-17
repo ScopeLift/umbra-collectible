@@ -36,7 +36,9 @@ export const MerkleProvider = ({ children }) => {
     if (!address) {
       return;
     }
-    const index = addresses["addresses"].findIndex((addr) => addr === address);
+    const index = addresses["addresses"].findIndex(
+      (addr) => addr.toLowerCase() === address.toLowerCase()
+    );
     try {
       const proof = tree.getProof(index, address);
       setNode({
